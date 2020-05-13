@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+	<menuitem id="sub_menu_hr" name="HR Employee" parent="root_car_info" ></menuitem> 
+	
+	
+	<!-- ***** Form View ***** -->
+	<record id="employee_inherit_form" model="ir.ui.view">
+	<field name="name">employee_form_view</field>
+	<field name="inherit_id" ref="hr.view_employee_form"></field>
+	<field name="model">hr.employee</field>
+	<field name="arch" type="xml">
+		<field name="category_ids" position="after">
+			<group>
+				 <field name="attendance_id"/>
+				<field name="card_no" />
+			</group>
+		</field>	
+		
+		<xpath expr="//page//group//group//field[@name='address_id']" position="after">
+				<field name="attendance_id" />
+		</xpath>
+		
+		<xpath expr="//page[@name='hr_settings']" position="after">
+			<page name="others" string="Others">
+				<group>
+					<field name="additional_info"/>
+				</group>
+			</page>
+		</xpath>
+			 
+	</field>
+	</record>
+	
+	<!-- ***** Tree View ***** -->
+	<record id="employee_inherit_tree" model="ir.ui.view">
+	<field name="name">employee_tree_view</field>
+	<field name="inherit_id" ref="hr.view_employee_tree"></field>
+	<field name="model">hr.employee</field>
+	<field name="arch" type="xml">
+		<field name="name" position="after">
+			<field name="attendance_id"/>
+			<field name="card_no" />
+		</field>
+	</field>
+	</record>
+	
+	<!-- ***** Search View ***** -->
+	<record id="employee_inherit_search_view" model="ir.ui.view">
+	<field name="name">employee_search_view</field>
+	<field name="inherit_id" ref="hr.view_employee_filter"></field>
+	<field name="model">hr.employee</field>
+	<field name="arch" type="xml">
+		<search string="Employees">
+			<field name="attendance_id"/>
+			<field name="card_no" />
+			<filter string="Attendance" name="attendance_id"/>
+			<filter string="Card No" name="card_no"/>
+			<group expand="0" string="Group By">
+            	<filter string="Attendance" name="attendance_id" context="{'group_by':'attendance_id'}"/>
+				<filter string="Card No" name="card_no" context="{'group_by':'card_no'}"/>
+            </group>
+		</search>
+	</field>
+	</record> 
+	
+	<record id="action_hr_employee" model="ir.actions.act_window">
+		<field name="name">hr.employee</field>
+		<field name="res_model">hr.employee</field>
+		<field name="view_type">form</field>
+		<field name="view_mode">tree,form</field>
+	</record>
+
+	<menuitem id="menu_hr_action" name="Employee Information"
+		parent="sub_menu_hr" action="action_hr_employee" sequence="3"></menuitem>
+</odoo>

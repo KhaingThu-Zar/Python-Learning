@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+	<menuitem id="main_menu_car_showroom" name="Car Show Room"
+		parent="main_menu_car_info"></menuitem>
+
+	<!-- ***** Sell Info Tree View ***** -->
+	<record id="car_sell_info_tree_view" model="ir.ui.view">
+		<field name="name">car sell.tree</field>
+		<field name="model">car.sell</field>
+		<field name="arch" type="xml">
+			<tree string="Car Sell Tree">
+				<field name="date" />
+				<field name="manager_name" />
+				<field name="employee_name" />
+				<field name="customer_name" />
+				<field name="car_type" />
+				<field name="price" />
+				<field name="colour" />
+				<field name = "state"/>
+			</tree>
+		</field>
+	</record>
+
+	<record id="car_sell_info_search" model="ir.ui.view">
+		<field name="name">car.sell.search</field>
+		<field name="model">car.sell</field>
+		<field name="arch" type="xml">
+			<search string="Search Car Sell Information">
+				<field name="manager_name" string="Manager Name" />
+				<field name="car_type" string="Cat Type" />
+				
+				<!-- ********* Filter With Domain ****** -->
+				<filter name="state" string="State"
+					domain="[('state', '=','sold')]" />
+
+			</search>
+		</field>
+	</record>
+
+	<!-- ***** Sell Info Form View ***** -->
+	<record id="car_sell_info_form_view" model="ir.ui.view">
+		<field name="name">carshow.form</field>
+		<field name="model">car.sell</field>
+		<field name="arch" type="xml">
+			<form string="Car Sell Form">
+				<header>
+					<button name="sell_car" state="show" string="Sell"
+						type="object" class="oe_highlight"
+						attrs="{'invisible': [('state', '=','sold')]}"></button>
+					<field name="state" widget="statusbar"
+						statusbar_visible="show,sold,cancel" />
+				</header>
+				<sheet>
+					<div style="float:left">
+						<group>
+							<field name="car_type" />
+							<field name="price" />
+							<field name="colour" />
+							<field name="quantity" />
+							<field name="tax" />
+							<field name="tax_amount" />
+							<field name="total" />
+						</group>
+					</div>
+					<div style="float:right">
+						<group>
+							<field name="date" />
+							<field name="manager_name" />
+							<field name="employee_name" />
+							<!-- <field name="employee_name" widget="many2many_tags"/> -->
+							<field name="customer_name" />
+							<field name="specification" />
+							<button name="create_voucher" type="object"
+								string="Create Voucher" class="oe_edit_only btn-primary" />
+						</group>
+					</div>
+				</sheet>
+			</form>
+		</field>
+	</record>
+
+	<!-- ***** Sell Info Pivot View ***** -->
+	<record id="car_sell_info_pivot_view" model="ir.ui.view">
+		<field name="name">car sell.tree</field>
+		<field name="model">car.sell</field>
+		<field name="arch" type="xml">
+			<pivot string="Car Sell Pivot">
+				<field name="customer_name" type="col" />
+				<field name="car_type" type="row" />
+				<field name="price" type="measure" />
+			</pivot>
+		</field>
+	</record>
+
+	<!-- ***** Sell Info Graph View ***** -->
+	<record id="car_sell_info_graph_view" model="ir.ui.view">
+		<field name="name">car sell.tree</field>
+		<field name="model">car.sell</field>
+		<field name="arch" type="xml">
+			<graph string="Car Sell Graph">
+				<field name="customer_name" />
+				<field name="car_type" />
+				<field name="price" type="measure" />
+			</graph>
+		</field>
+	</record>
+
+
+	<record id="action_car_sell" model="ir.actions.act_window">
+		<field name="name">car sell</field>
+		<field name="res_model">car.sell</field>
+		<field name="view_type">form</field>
+		<field name="view_mode">tree,form,pivot,graph</field>
+	</record>
+
+	<menuitem id="menu_car_sell_main_action" name="Sell Info"
+		parent="main_menu_car_showroom" action="action_car_sell"></menuitem>
+
+</odoo>

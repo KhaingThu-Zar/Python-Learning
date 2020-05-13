@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+	<!-- ***** Voucher Form View ***** -->
+	<record id="voucher_rec_form" model="ir.ui.view">
+		<field name="name">voucher.form.form</field>
+		<field name="model">voucher.form</field>
+		<field name="arch" type="xml">
+			<form string="CarInfo Form">
+				<sheet>
+					<group>
+						<group>
+							<field name="type" />
+							<field name="customer_name" />
+							<field name="date" />
+							<field name="price" />
+						</group>
+						<footer>
+							<button name="create_vc" string="Create"
+								type="object" class="btn-primary" />
+							<button string="Cancel" class="btn-default"
+								special="cancel" />
+						</footer>
+					</group>
+				</sheet>
+			</form>
+		</field>
+	</record>
+
+
+</odoo>

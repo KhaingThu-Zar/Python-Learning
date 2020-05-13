@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+	<menuitem id="root_car_info" name="Car Information"></menuitem>
+	<menuitem id="main_menu_car_info" name="Car Information"
+		parent="root_car_info"></menuitem>
+
+	<!-- ***** Car Form View ***** -->
+	<record id="car_info_form" model="ir.ui.view">
+		<field name="name">car info</field>
+		<field name="model">car.info</field>
+		<field name="arch" type="xml">
+			<form string="CarInfo Form">
+				<sheet>
+					<group>
+						<field name="name" />
+						<field name="car_colour" />
+						<field name="engine" />
+						<field name="car_price" />
+						<!-- <field name="data" />
+						<button name="import_file" string="Import" type="object"  class="oe_highlight" /> -->
+					</group>
+				</sheet>
+			</form>
+		</field>
+	</record>
+
+	<!-- ***** Tree View ***** -->
+	<record id="car_info_tree" model="ir.ui.view">
+		<field name="name">car info</field>
+		<field name="model">car.info</field>
+		<field name="arch" type="xml">
+			<tree string="CarInfo Tree">
+				<field name="name" />
+				<field name="car_colour" />
+				<field name="engine" />
+				<field name="car_price" />
+			</tree>
+		</field>
+	</record>
+
+	<!-- ***** Car Graph View ***** -->
+	<record id="car_info_graph" model="ir.ui.view">
+		<field name="name">car.graph</field>
+		<field name="model">car.info</field>
+		<field name="arch" type="xml">
+			<graph string="Car Graph">
+				<field name="name" />
+				<field name="car_colour" />
+				<field name="engine" />
+				<field name="car_price" type="measure" />
+			</graph>
+		</field>
+	</record>
+
+	<!-- ***** Car Pivot View ***** -->
+	<record id="car_info_pivot" model="ir.ui.view">
+		<field name="name">car.graph</field>
+		<field name="model">car.info</field>
+		<field name="arch" type="xml">
+			<pivot string="Car Pivot">
+				<field name="name" type="col" />
+				<field name="car_colour" type="row" />
+				<field name="engine" type="row" />
+				<field name="car_price" type="measure" />
+			</pivot>
+		</field>
+	</record>
+
+	<!-- ********* Search in xml with filter , group by and favorites ********* -->
+	<record id="car_info_search" model="ir.ui.view">
+		<field name="name">car.info.search</field>
+		<field name="model">car.info</field>
+		<field name="arch" type="xml">
+			<search string="Search Car Information">
+				<field name="name" string="Car Type" />
+				<field name="car_colour" string="Colour" />
+				<field name="engine" string="Engine" />
+				<!-- <separator/> -->
+
+				<!-- ********* Filter ****** -->
+				<filter name="car_price" string="Car Price"
+					domain="[('car_price', '>',0)]" />
+
+				<!-- ********* Group By ****** -->
+				<group string="Group By" expand="0" name="groupby">
+					<filter string="Car Type" name="name"
+						context="{'group_by':'name'}" />
+					<filter string="Car Colour" name="car_colour"
+						context="{'group_by':'car_colour'}" />
+					<filter string="Car Price" name="car_price"
+						context="{'group_by':'car_price'}" />
+				</group>
+			</search>
+		</field>
+	</record>
+
+	<!-- ********* Favourite ********* -->
+	<!-- <record id="filter_fav_sar_type" model="ir.actions.act_window">
+		<field name="name">Car info</field>
+		<field name="res_model">car.info</field>
+		<field name="user_id" eval="False" />
+		<field name="context">{'group_by':['name']}</field>
+	</record>
+ -->
+	<record id="action_car_info" model="ir.actions.act_window">
+		<field name="name">Car info</field>
+		<field name="res_model">car.info</field>
+		<field name="view_type">form</field>
+		<field name="view_mode">tree,form,graph,pivot</field>
+	</record>
+	<menuitem id="menu_car_info_action" name="Car Info"
+		parent="main_menu_car_info" action="action_car_info" sequence="1"></menuitem>
+
+</odoo>

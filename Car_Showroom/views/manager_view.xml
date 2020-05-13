@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+	<!-- ***** Manager Tree View ***** -->
+	<record id="manager_tree_view" model="ir.ui.view">
+		<field name="name">manager.tree</field>
+		<field name="model">manager.info</field>
+		<field name="arch" type="xml">
+			<tree string="Manager Tree">
+				<field name="name" />
+				<field name="NRC" />
+				<field name="age" />
+				<field name="address" />
+				<field name="phone" />
+				<field name="position" />
+			</tree>
+		</field>
+	</record>
+
+	<!-- ***** Manager Form View ***** -->
+	<record id="manager_form_view" model="ir.ui.view">
+		<field name="name">manager.form</field>
+		<field name="model">manager.info</field>
+		<field name="arch" type="xml">
+			<form string="Manager Form">
+				<sheet>
+					<group>
+						<field name="name" />
+						<field name="NRC" />
+						<field name="age" />
+					</group>
+					<group>
+						<field name="address" />
+						<field name="phone" />
+						<field name="position" />
+					</group>
+				</sheet>
+			</form>
+		</field>
+	</record>
+
+	<record id="action_manager" model="ir.actions.act_window">
+		<field name="name">manager</field>
+		<field name="res_model">manager.info</field>
+		<field name="view_type">form</field>
+		<field name="view_mode">tree,form</field>
+	</record>
+
+	<menuitem id="menu_manager_action" name="Manager"
+		parent="main_menu_employee_form" action="action_manager" sequence="4"></menuitem>
+
+</odoo>

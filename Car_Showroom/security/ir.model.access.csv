@@ -1,0 +1,16 @@
+id,name,model_id/id,group_id/id,perm_read,perm_write,perm_create,perm_unlink
+access_car_info_user,car.info.user,model_car_info,base.user_admin,1,1,1,1
+access_car_info_admin,car.info.admin,model_car_info,base.group_user,1,1,1,1
+access_cus_info_user,cus.info.user,model_cus_info,base.user_admin,1,1,1,1
+access_cus_info_admin,cus.info.admin,model_cus_info,base.group_user,1,1,1,1
+access_employee_info_user,employee.info.user,model_employee_info,base.user_admin,1,1,1,1
+access_employee_info_admin,employee.info.admin,model_employee_info,base.group_user,1,1,1,1
+access_manager_info_user,manager.info.user,model_manager_info,base.user_admin,1,1,1,1
+access_manager_info_admin,manager.info.admin,model_manager_info,base.group_user,1,1,1,1
+access_car_sell_user,car.sell.user,model_car_sell,base.user_admin,1,1,1,1
+access_car_sell_admin,car.sell.admin,model_car_sell,base.group_user,1,1,1,1
+access_sold_out_info_user,sold.out.info.user,model_sold_out_info,base.user_admin,1,1,1,1
+access_sold_out_info_admin,sold.out.info.admin,model_sold_out_info,base.group_user,1,1,1,1
+access_voucher_form_user,voucher.form.user,model_voucher_form,base.user_admin,1,1,1,1
+access_voucher_form_admin,voucher.form.admin,model_voucher_form,base.group_user,1,1,1,1
+

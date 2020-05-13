@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+<menuitem id="main_menu_for_report" name="Report"
+		parent="root_car_info"></menuitem>
+	<!-- ***** Sold Out Form View ***** -->
+	<record id="car_sold_out_info_form" model="ir.ui.view">
+		<field name="name">sold.out.info.form</field>
+		<field name="model">sold.out.info</field>
+		<field name="arch" type="xml">
+			<form string="Car SoldOut Form">
+				<sheet>
+					<group>
+						<group>
+							<field name="from_date" />
+						</group>
+						<group>
+							<field name="to_date" />
+						</group>
+						
+						<footer>
+						<button name="soldout_report" string="Download"
+							type="object" class="btn-primary" />
+						<button string="Cancel" class="btn-default"
+							special="cancel" />
+					</footer>
+					</group>
+				</sheet>
+			</form>
+		</field>
+	</record>
+
+	<record id="action_car_soldout_info"
+		model="ir.actions.act_window">
+		<field name="name">Sold out Report</field>
+		<field name="res_model">sold.out.info</field>
+		<field name="view_type">form</field>
+		<field name="view_mode">form</field>
+		<field name="target">new</field>
+	</record>
+
+	<menuitem id="main_menu_car_soldout" name="SoldOut Report"
+		parent="main_menu_for_report" action="action_car_soldout_info"></menuitem>
+</odoo>
